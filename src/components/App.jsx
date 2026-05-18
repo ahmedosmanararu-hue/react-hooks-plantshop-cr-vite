@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PlantCard from './PlantCard';
 import PlantForm from './PlantForm';
+import Search from './Search';
 import SearchBar from './SearchBar';
 import '../App.css';
 
@@ -16,14 +17,20 @@ function App() {
       .catch(error => console.error('Error fetching plants:', error));
   }, []);
 
-  // Add a new plant - POST request
+  // Add a new plant - POST request with soldOut field
   const handleAddPlant = (newPlant) => {
+    // Ensure soldOut is included in the request body
+    const plantToSend = {
+      ...newPlant,
+      soldOut: newPlant.soldOut !== undefined ? newPlant.soldOut : false
+    };
+    
     fetch('http://localhost:6001/plants', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newPlant),
+      body: JSON.stringify(plantToSend),
     })
       .then(response => response.json())
       .then(savedPlant => {
@@ -57,11 +64,12 @@ function App() {
 
   return (
     <div className="App">
-       <h1>Plantsy</h1>
-       
-       <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
-       
-       <PlantForm onAddPlant={handleAddPlant} />
+      <h1>Plantsy</h1>
+      
+      <Search searchTerm={searchTerm} onSearch={setSearchTerm} />
+      <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+      
+      <PlantForm onAddPlant={handleAddPlant} />
       
       <ul className="cards">
         {filteredPlants.map(plant => (

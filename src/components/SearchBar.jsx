@@ -1,6 +1,3 @@
-import React from 'react';
-import './SearchBar.css';
-
 function SearchBar({ searchTerm, onSearch }) {
   const handleSearchChange = (e) => {
     onSearch(e.target.value);
@@ -9,7 +6,7 @@ function SearchBar({ searchTerm, onSearch }) {
   return (
     <input
       type="text"
-      placeholder="Search plants"
+      placeholder="Type a name to search..."
       value={searchTerm}
       onChange={handleSearchChange}
       className="search-bar"

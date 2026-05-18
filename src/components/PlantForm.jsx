@@ -15,12 +15,12 @@ function PlantForm({ onAddPlant }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-     const newPlant = {
-       name: formData.name,
-       image: formData.image,
-       price: formData.price,
-       soldOut: false
-     };
+    const newPlant = {
+      name: formData.name,
+      image: formData.image,
+      price: formData.price,
+      soldOut: false  // Make sure soldOut is included
+    };
     
     onAddPlant(newPlant);
     

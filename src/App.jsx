@@ -10,20 +10,26 @@ function App() {
 
   // Fetch all plants on page load
   useEffect(() => {
-    fetch('http://localhost:3001/plants')
+    fetch('http://localhost:6001/plants')
       .then(response => response.json())
       .then(data => setPlants(data))
       .catch(error => console.error('Error fetching plants:', error));
   }, []);
 
-  // Add a new plant - POST request
+  // Add a new plant - POST request with soldOut field
   const handleAddPlant = (newPlant) => {
-    fetch('http://localhost:3001/plants', {
+    // Ensure soldOut is included in the request body
+    const plantToSend = {
+      ...newPlant,
+      soldOut: newPlant.soldOut !== undefined ? newPlant.soldOut : false
+    };
+    
+    fetch('http://localhost:6001/plants', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newPlant),
+      body: JSON.stringify(plantToSend),
     })
       .then(response => response.json())
       .then(savedPlant => {
@@ -34,7 +40,7 @@ function App() {
 
   // Toggle sold out status - PATCH request
   const handleToggleSoldOut = (id, currentStatus) => {
-    fetch(`http://localhost:3001/plants/${id}`, {
+    fetch(`http://localhost:6001/plants/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
