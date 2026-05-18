@@ -4,24 +4,25 @@ import App from '../../components/App';
 import '@testing-library/jest-dom';
 
 describe('3rd Deliverable', () => {
-  test('marks a plant as sold out', async () => {
-    global.setFetchResponse(global.basePlants)
+   test('marks a plant as sold out', async () => {
+     global.setFetchResponse(global.basePlants)
+     global.setFetchResponse({ ...global.basePlants[0], soldOut: true })
 
-    const { findAllByTestId, findByText } = render(<App />);
+     const { findAllByTestId, findByText } = render(<App />);
 
-    // Get all plant items
-    const plantItems = await findAllByTestId('plant-item');
-    expect(plantItems).toHaveLength(basePlants.length);
+     // Get all plant items
+     const plantItems = await findAllByTestId('plant-item');
+     expect(plantItems).toHaveLength(global.basePlants.length);
 
-    // Select the first plant item
-    const firstPlantItem = plantItems[0];
+     // Select the first plant item
+     const firstPlantItem = plantItems[0];
 
-    // Find and click the "In Stock" button within the first plant item
-    const inStockButton = within(firstPlantItem).getByText('In Stock');
-    fireEvent.click(inStockButton);
+     // Find and click the "In Stock" button within the first plant item
+     const inStockButton = within(firstPlantItem).getByText('In Stock');
+     fireEvent.click(inStockButton);
 
-    // Wait for the "Out of Stock" button to appear and verify its presence
-    const outOfStockButton = await findByText('Out of Stock');
-    expect(outOfStockButton).toBeInTheDocument();
-  });
+     // Wait for the "Sold Out" button to appear and verify its presence
+     const outOfStockButton = await findByText('Sold Out');
+     expect(outOfStockButton).toBeInTheDocument();
+   });
 })

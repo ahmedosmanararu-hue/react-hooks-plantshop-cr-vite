@@ -1,15 +1,18 @@
-import React from "react";
+import { useState } from 'react';
+import './PlantCard.css';
 
-function PlantCard() {
+function PlantCard({ plant, onToggleSoldOut }) {
   return (
     <li className="card" data-testid="plant-item">
-      <img src={"https://via.placeholder.com/400"} alt={"plant name"} />
-      <h4>{"plant name"}</h4>
-      <p>Price: {"plant price"}</p>
-      {true ? (
-        <button className="primary">In Stock</button>
+      <img src={plant.image} alt={plant.name} />
+      <h4>{plant.name}</h4>
+       <p>Price: {plant.price}</p>
+      {plant.soldOut ? (
+        <button className="sold-out" disabled>Sold Out</button>
       ) : (
-        <button>Out of Stock</button>
+        <button className="primary" onClick={() => onToggleSoldOut(plant.id, plant.soldOut)}>
+          In Stock
+        </button>
       )}
     </li>
   );

@@ -1,84 +1,36 @@
-import { afterEach } from 'vitest'
-import { cleanup } from '@testing-library/react'
-import '@testing-library/jest-dom/vitest'
-import fetch from 'node-fetch';
+import { expect, afterEach, vi } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom/vitest';
 
-global.fetch = fetch
+// Mock fetch globally
+global.fetch = vi.fn();
 
+// Mock console.error to keep test output clean
+global.console.error = vi.fn();
+
+// Set up test data
 global.basePlants = [
-    {
-      "id": 1,
-      "name": "Aloe",
-      "image": "./images/aloe.jpg",
-      "price": 15.99
-    },
-    {
-      "id": 2,
-      "name": "ZZ Plant",
-      "image": "./images/zz-plant.jpg",
-      "price": 25.98
-    },
-    {
-      "id": 3,
-      "name": "Pilea peperomioides",
-      "image": "./images/pilea.jpg",
-      "price": 5.99
-    },
-    {
-      "id": 4,
-      "name": "Pothos",
-      "image": "./images/pothos.jpg",
-      "price": 12.11
-    },
-    {
-      "id": 5,
-      "name": "Jade",
-      "image": "./images/jade.jpg",
-      "price": 10.37
-    },
-    {
-      "id": 6,
-      "name": "Monstera Deliciosa",
-      "image": "./images/monstera.jpg",
-      "price": 25.99
-    },
-    {
-      "id": 7,
-      "name": "Fiddle Leaf Fig",
-      "image": "./images/fiddle-leaf-fig.jpg",
-      "price": 55
-    }
-]
+  { id: 1, name: 'Aloe', image: 'url', price: 45.99, soldOut: false },
+  { id: 2, name: 'Snake Plant', image: 'url', price: 29.99, soldOut: false },
+  { id: 3, name: 'ZZ Plant', image: 'url', price: 39.99, soldOut: true },
+  { id: 4, name: 'Peperomia', image: 'url', price: 15.99, soldOut: false }
+];
 
 global.alternatePlants = [
-    {
-      "id": 1,
-      "name": "Another Aloe",
-      "image": "./images/aloe.jpg",
-      "price": 12.88
-    },
-    {
-      "id": 2,
-      "name": "Another Jade",
-      "image": "./images/jade.jpg",
-      "price": 4.92
-    },
-    {
-      "id": 3,
-      "name": "Another Fiddle Leaf Fig",
-      "image": "./images/fiddle-leaf-fig.jpg",
-      "price": 55
-    }
-]
-  
-global.setFetchResponse = (val) => {
-    global.fetch = vi.fn(() => Promise.resolve({
-        json: () => Promise.resolve(val),
-        ok: true,
-        status: 200
-    }))
-}
+  { id: 4, name: 'Pothos', image: 'url', price: 15.99, soldOut: false },
+  { id: 5, name: 'Fiddle Leaf Fig', image: 'url', price: 55.99, soldOut: true }
+];
 
+// Helper function to mock fetch response
+global.setFetchResponse = (data) => {
+  global.fetch.mockResolvedValueOnce({
+    ok: true,
+    json: async () => data,
+  });
+};
+
+// Clean up after each test
 afterEach(() => {
-    cleanup();
-})
+  cleanup();
+  vi.clearAllMocks();
+});

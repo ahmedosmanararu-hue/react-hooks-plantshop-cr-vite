@@ -2,45 +2,72 @@
   "plants": [
     {
       "id": 1,
-      "name": "Aloe",
-      "image": "./images/aloe.jpg",
-      "price": 15.99
+      "name": "Monstera Deliciosa",
+      "image": "https://images.unsplash.com/photo-1614594974033-9b59b4b7b0b2?w=300",
+      "price": 45.99,
+      "soldOut": false
     },
     {
       "id": 2,
-      "name": "ZZ Plant",
-      "image": "./images/zz-plant.jpg",
-      "price": 25.98
+      "name": "Snake Plant",
+      "image": "https://images.unsplash.com/photo-1593482892285-11e2f4c8b3b3?w=300",
+      "price": 29.99,
+      "soldOut": false
     },
     {
       "id": 3,
-      "name": "Pilea peperomioides",
-      "image": "./images/pilea.jpg",
-      "price": 5.99
+      "name": "Fiddle Leaf Fig",
+      "image": "https://images.unsplash.com/photo-1582651573404-d4c5a66e5825?w=300",
+      "price": 89.99,
+      "soldOut": true
     },
     {
       "id": 4,
-      "name": "Pothos",
-      "image": "./images/pothos.jpg",
-      "price": 12.11
+      "name": "String of Pearls",
+      "image": "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=300",
+      "price": 34.99,
+      "soldOut": false
     },
     {
       "id": 5,
-      "name": "Jade",
-      "image": "./images/jade.jpg",
-      "price": 10.37
+      "name": "Peace Lily",
+      "image": "https://images.unsplash.com/photo-1593693557477-5b2452b7c8e3?w=300",
+      "price": 39.99,
+      "soldOut": false
+    }
+  ],
+  "orders": [
+    {
+      "id": 1,
+      "plants": [
+        {
+          "id": 1,
+          "name": "Monstera Deliciosa",
+          "image": "https://images.unsplash.com/photo-1614594974033-9b59b4b7b0b2?w=300",
+          "price": 45.99,
+          "soldOut": false
+        }
+      ]
     },
     {
-      "id": 6,
+      "id": 2,
+  "plants": [
+    {
+      "id": 1,
       "name": "Monstera Deliciosa",
-      "image": "./images/monstera.jpg",
-      "price": 25.99
+      "image": "https://images.unsplash.com/photo-1614594974033-9b59b4b7b0b2?w=300",
+      "price": 45.99,
+      "soldOut": false
     },
     {
-      "id": 7,
-      "name": "Fiddle Leaf Fig",
-      "image": "./images/fiddle-leaf-fig.jpg",
-      "price": 55
+      "id": 2,
+      "name": "Snake Plant",
+      "image": "https://images.unsplash.com/photo-1593482892285-11e2f4c8b3b3?w=300",
+      "price": 29.99,
+      "soldOut": false
     }
   ]
 }
+  ]
+}
+

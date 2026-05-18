@@ -7,7 +7,7 @@ describe('4th Deliverable', () => {
   test('filters plants by name on search', async () => {
     global.setFetchResponse(global.basePlants)
     const { getByPlaceholderText, queryAllByTestId } = render(<App />);
-    const searchInput = getByPlaceholderText('Type a name to search...');
+     const searchInput = getByPlaceholderText('Search plants');
     fireEvent.change(searchInput, { target: { value: 'aloe' } });
 
     await waitFor(() => {

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import PlantCard from './PlantCard';
-import PlantForm from './PlantForm';
-import SearchBar from './SearchBar';
-import '../App.css';
+import PlantCard from './components/PlantCard';
+import PlantForm from './components/PlantForm';
+import SearchBar from './components/SearchBar';
+import './App.css';
 
 function App() {
   const [plants, setPlants] = useState([]);
@@ -10,7 +10,7 @@ function App() {
 
   // Fetch all plants on page load
   useEffect(() => {
-    fetch('http://localhost:6001/plants')
+    fetch('http://localhost:3001/plants')
       .then(response => response.json())
       .then(data => setPlants(data))
       .catch(error => console.error('Error fetching plants:', error));
@@ -18,7 +18,7 @@ function App() {
 
   // Add a new plant - POST request
   const handleAddPlant = (newPlant) => {
-    fetch('http://localhost:6001/plants', {
+    fetch('http://localhost:3001/plants', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function App() {
 
   // Toggle sold out status - PATCH request
   const handleToggleSoldOut = (id, currentStatus) => {
-    fetch(`http://localhost:6001/plants/${id}`, {
+    fetch(`http://localhost:3001/plants/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -57,11 +57,11 @@ function App() {
 
   return (
     <div className="App">
-       <h1>Plantsy</h1>
-       
-       <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
-       
-       <PlantForm onAddPlant={handleAddPlant} />
+      <h1>Plantsy</h1>
+      
+      <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+      
+      <PlantForm onAddPlant={handleAddPlant} />
       
       <ul className="cards">
         {filteredPlants.map(plant => (

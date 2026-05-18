@@ -8,9 +8,9 @@ describe('2nd Deliverable', () => {
         global.setFetchResponse(global.basePlants)
         const { getByPlaceholderText, findByText, getByText } = render(<App />)
 
-        const firstPlant = {name: 'foo', image: 'foo_plant_image_url', price: '10'}
+        const firstPlant = {name: 'foo', image: 'foo_plant_image_url', price: '10', soldOut: false}
     
-        global.setFetchResponse({...firstPlant, id: "184298qfhquhf92"})
+         global.setFetchResponse({...firstPlant, id: "184298qfhquhf92", price: parseFloat(firstPlant.price)})
     
         fireEvent.change(getByPlaceholderText('Plant name'), { target: { value: firstPlant.name } });
         fireEvent.change(getByPlaceholderText('Image URL'), { target: { value: firstPlant.image } });
@@ -28,7 +28,7 @@ describe('2nd Deliverable', () => {
         const newPlant = await findByText('foo');
         expect(newPlant).toBeInTheDocument();
 
-        const secondPlant = {name: 'bar', image: 'bar_plant_image_url', price: '5'}
+        const secondPlant = {name: 'bar', image: 'bar_plant_image_url', price: '5', soldOut: false}
     
         global.setFetchResponse({...secondPlant, id: "3810fqhrquhf9fnqnc0"})
     

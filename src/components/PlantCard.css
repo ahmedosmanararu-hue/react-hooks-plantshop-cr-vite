@@ -1,0 +1,68 @@
+.plant-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: white;
+}
+
+.plant-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.plant-card.sold-out {
+  opacity: 0.7;
+  filter: grayscale(0.2);
+}
+
+.plant-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.plant-info {
+  padding: 15px;
+}
+
+.plant-name {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.plant-price {
+  margin: 0 0 12px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.sold-out-btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.sold-out-btn:not(.sold) {
+  background-color: #4caf50;
+  color: white;
+}
+
+.sold-out-btn:not(.sold):hover {
+  background-color: #45a049;
+}
+
+.sold-out-btn.sold {
+  background-color: #f44336;
+  color: white;
+}
+
+.sold-out-btn.sold:hover {
+  background-color: #da190b;
+}

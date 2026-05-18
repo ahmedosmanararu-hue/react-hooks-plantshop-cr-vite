@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import PlantCard from './PlantCard';
-import PlantForm from './PlantForm';
-import SearchBar from './SearchBar';
+import PlantCard from '../components/PlantCard';
+import PlantForm from '../components/PlantForm';
+import SearchBar from '../components/SearchBar';
 import '../App.css';
 
 function App() {
@@ -57,11 +57,11 @@ function App() {
 
   return (
     <div className="App">
-       <h1>Plantsy</h1>
-       
-       <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
-       
-       <PlantForm onAddPlant={handleAddPlant} />
+      <h1>Plantsy</h1>
+      
+      <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+      
+      <PlantForm onAddPlant={handleAddPlant} />
       
       <ul className="cards">
         {filteredPlants.map(plant => (
